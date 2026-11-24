@@ -12,7 +12,24 @@ import { UserName } from '../../../../../domain/value-objects/username';
 
 export class InMemoryUserRepository implements UserRepositoryPort {
 
-    private users: User[] = []
+    private users: User[] = [
+        {
+            id: new UserId(("111111").toString()),
+            username: new UserName("ing-reyes"),
+            email: new UserEmail("reyes@google.com"),
+            password: new UserPassword("1234567"),
+            createdAt: new UserCreatedAt(new Date()),
+            mapToPrimitive: function (): { id: string; username: string; email: string; password: string; createdAt: Date; } {
+                return {
+                    id: this.id.value,
+                    username: this.username.value,
+                    email: this.email.value,
+                    password: this.password.value,
+                    createdAt: this.createdAt.value
+                }
+            }
+        }
+    ]
 
     async save(createUserCommand: CreateUserCommand): Promise<void> {
         const { email, username, password, createdAt } = createUserCommand

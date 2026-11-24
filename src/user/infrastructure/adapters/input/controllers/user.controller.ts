@@ -7,6 +7,7 @@ import { DeleteUserUseCase } from "../../../../application/uses-cases/delete-use
 import { FinOneUserByIdUseCase } from "../../../../application/uses-cases/find-one-user-by-id.use-case"
 import { FindAllUsersUseCase } from "../../../../application/uses-cases/find-all-users.use-case"
 import { PaginationDto } from "../../../../../common/dtos/pagination.dto"
+import { FindOneUserByEmailUseCase } from "../../../../application/uses-cases/find-one-user-by-email.use-case"
 
 export class UserController {
 
@@ -15,7 +16,7 @@ export class UserController {
         private readonly updateUserUseCase: UpdateUserUseCase,
         private readonly deleteUserUseCase: DeleteUserUseCase,
         private readonly findOneUserByIdUseCase: FinOneUserByIdUseCase,
-        private readonly findOneUserByEmailUseCase: FinOneUserByIdUseCase,
+        private readonly findOneUserByEmailUseCase: FindOneUserByEmailUseCase,
         private readonly findAllUsersUseCase: FindAllUsersUseCase,
     ) { }
 

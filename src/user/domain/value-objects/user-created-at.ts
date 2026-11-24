@@ -10,6 +10,6 @@ export class UserCreatedAt {
 
     private validate(){
         if( !this.value ) throw new Error("Fecha de creacion es requerida");
-        if( (this.value instanceof Date) ) throw new Error("Es una fecha inválida");
+        if( !(this.value instanceof Date) ) throw new Error("Date Es una fecha inválida");
     }
 }

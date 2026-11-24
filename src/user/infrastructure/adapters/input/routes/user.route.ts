@@ -9,12 +9,12 @@ export class UserRoute {
     get router() {
         const router = Router();
 
-        router.post("/users", this.userController.create);
-        router.put("/users", this.userController.update);
-        router.delete("/users/:id", this.userController.delete);
-        router.get("/users/:id", this.userController.findOneById);
-        router.get("/users/:email", this.userController.findOneByEmail);
-        router.get("/users", this.userController.findAllUsers);
+        router.post("/", this.userController.create);
+        router.put("/", this.userController.update);
+        router.delete("/:id", this.userController.delete);
+        router.get("/:id", this.userController.findOneById);
+        router.get("/:email", this.userController.findOneByEmail);
+        router.get("/", this.userController.findAllUsers);
 
         return router;
     }
