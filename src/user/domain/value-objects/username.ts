@@ -1,3 +1,5 @@
+import { ManagerError } from "../../../common/errors/manager.error";
+
 export class UserName {
     public value: string;
 
@@ -9,7 +11,7 @@ export class UserName {
     }
 
     private validate(){
-        if( !this.value ) throw new Error("Username es requirido");
-        if( this.value.length < 3 ) throw new Error("Username es muy corto");
+        if( !this.value ) throw ManagerError.badRequest("Username es requirido");
+        if( this.value.length < 3 ) throw ManagerError.badRequest("Username es muy corto");
     }
 }

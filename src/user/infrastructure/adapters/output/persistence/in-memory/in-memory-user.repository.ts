@@ -59,10 +59,10 @@ export class InMemoryUserRepository implements UserRepositoryPort {
         this.users = this.users.filter((user) => user.id.value !== userId.value)
     }
     async findOneById(userId: UserId): Promise<User | null> {
-        return this.users.find((user) => user.id.value !== userId.value) ?? null;
+        return this.users.find((user) => user.id.value === userId.value) ?? null;
     }
     async findOneByEmail(userEmail: UserEmail): Promise<User | null> {
-        return this.users.find((user) => user.email.value !== userEmail.value) ?? null;
+        return this.users.find((user) => user.email.value === userEmail.value) ?? null;
     }
     async findAll(paginationDto: PaginationDto): Promise<User[] | null> {
         return this.users

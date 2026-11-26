@@ -1,3 +1,5 @@
+import { ManagerError } from "../../../common/errors/manager.error";
+
 export class UserEmail {
     public value: string;
 
@@ -9,7 +11,7 @@ export class UserEmail {
     }
 
     private validate(){
-        if( !this.value ) throw new Error("Correo es requirido");
-        if( this.value.length < 3 ) throw new Error("Correo es muy corto");
+        if( !this.value ) throw ManagerError.badRequest("Correo es requirido");
+        if( this.value.length < 3 ) throw ManagerError.badRequest("Correo es muy corto");
     }
 }

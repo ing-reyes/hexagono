@@ -1,3 +1,5 @@
+import { ManagerError } from "../../../common/errors/manager.error";
+
 export class UserId {
     public value: string;
 
@@ -9,7 +11,7 @@ export class UserId {
     }
 
     private validate(){
-        if( !this.value ) throw new Error("Id de usuario es requirido");
-        if( this.value.length<5 ) throw new Error("Id no valido");
+        if( !this.value ) throw ManagerError.badRequest("Id de usuario es requirido");
+        if( this.value.length<5 ) throw ManagerError.badRequest("Id no valido");
     }
 }

@@ -1,3 +1,5 @@
+import { ManagerError } from "../../../common/errors/manager.error";
+
 export class UserPassword {
     public value: string;
 
@@ -9,7 +11,7 @@ export class UserPassword {
     }
 
     private validate(){
-        if( !this.value ) throw new Error("Contraseña es requirida");
-        if( this.value.length < 6 ) throw new Error("Contraseña es muy corta");
+        if( !this.value ) throw ManagerError.badRequest("Contraseña es requirida");
+        if( this.value.length < 6 ) throw ManagerError.badRequest("Contraseña es muy corta");
     }
 }

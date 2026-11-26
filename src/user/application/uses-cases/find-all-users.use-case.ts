@@ -1,4 +1,5 @@
 import { PaginationDto } from '../../../common/dtos/pagination.dto';
+import { ManagerError } from '../../../common/errors/manager.error';
 import { UserRepositoryPort } from "../../domain/ports/output/user-repository.port";
 import { UserResponse } from "../dtos/responses/user.response";
 
@@ -16,7 +17,7 @@ export class FindAllUsersUseCase implements UseCase {
     async execute(paginationDto: PaginationDto): Promise<UserResponse[] | null> {
         const users = await this.userRepositoryPort.findAll(paginationDto);
 
-        if (!users) throw new Error("Usuarios no existe");
+        if (!users) throw ManagerError.notFound("Usuarios no existe");
 
         return users.map((user) => user.mapToPrimitive());
     }

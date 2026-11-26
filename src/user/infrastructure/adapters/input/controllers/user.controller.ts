@@ -8,6 +8,7 @@ import { FinOneUserByIdUseCase } from "../../../../application/uses-cases/find-o
 import { FindAllUsersUseCase } from "../../../../application/uses-cases/find-all-users.use-case"
 import { PaginationDto } from "../../../../../common/dtos/pagination.dto"
 import { FindOneUserByEmailUseCase } from "../../../../application/uses-cases/find-one-user-by-email.use-case"
+import { Handler } from "../../../../../common/errors/handler.error"
 
 export class UserController {
 
@@ -30,7 +31,7 @@ export class UserController {
         //* Use Case
         this.createUserUseCase.execute(createUserRequest!)
             .then((user) => res.status(201).json(user))
-            .catch((err) => res.json(err));
+            .catch((err) => Handler.error(err, res));
     }
 
     update = (req: Request, res: Response) => {
@@ -43,7 +44,7 @@ export class UserController {
         //* Use Case
         this.updateUserUseCase.execute(createUserRequest!)
             .then((user) => res.status(200).json(user))
-            .catch((err) => res.json(err));
+            .catch((err) => Handler.error(err, res));
     }
 
     delete = (req: Request, res: Response) => {
@@ -51,7 +52,7 @@ export class UserController {
         //* Use Case
         this.deleteUserUseCase.execute(req.params.id as string)
             .then((user) => res.status(200).json(user))
-            .catch((err) => res.json(err));
+            .catch((err) => Handler.error(err, res));
     }
 
     findOneById = (req: Request, res: Response) => {
@@ -59,7 +60,7 @@ export class UserController {
         //* Use Case
         this.findOneUserByIdUseCase.execute(req.params.id as string)
             .then((user) => res.status(200).json(user))
-            .catch((err) => res.json(err));
+            .catch((err) => Handler.error(err, res));
     }
 
     findOneByEmail = (req: Request, res: Response) => {
@@ -67,7 +68,7 @@ export class UserController {
         //* Use Case
         this.findOneUserByEmailUseCase.execute(req.params.email as string)
             .then((user) => res.status(200).json(user))
-            .catch((err) => res.json(err));
+            .catch((err) => Handler.error(err, res));
     }
 
     findAllUsers = (req: Request, res: Response) => {
@@ -81,7 +82,7 @@ export class UserController {
         //* Use Case
         this.findAllUsersUseCase.execute(paginationDto!)
             .then((user) => res.status(200).json(user))
-            .catch((err) => res.json(err));
+            .catch((err) => Handler.error(err, res));
     }
 }
 

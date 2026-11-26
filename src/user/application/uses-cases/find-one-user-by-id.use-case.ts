@@ -1,3 +1,4 @@
+import { ManagerError } from "../../../common/errors/manager.error";
 import { UserRepositoryPort } from "../../domain/ports/output/user-repository.port";
 import { UserId } from "../../domain/value-objects/user-id";
 import { UserResponse } from "../dtos/responses/user.response";
@@ -16,7 +17,7 @@ export class FinOneUserByIdUseCase implements UseCase {
     async execute(userId: string): Promise<UserResponse | null> {
         const user = await this.userRepositoryPort.findOneById( new UserId(userId) );
 
-        if(!user) throw new Error("Usuario no existe")
+        if(!user) throw ManagerError.notFound("Usuario no existe")
 
         return user.mapToPrimitive();
     }
